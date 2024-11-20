@@ -1,0 +1,37 @@
+EX 2 OUTLIERS DETECTION
+REG NO:230701239
+STUDENT NAME:PRATHEBA.D
+
+import numpy as np
+from scipy import stats
+import seaborn as sns
+
+num = np.random.randint(10, 150, 9)
+print(num)
+np.mean(num)
+np.median(num)
+stats.mode(num)
+def out(num):
+    q1 = np.percentile(num, 25)
+    q3 = np.percentile(num, 75)
+    iqr = q3 - q1
+    lb = q1 - (1.5 * iqr)
+    ub = q3 + (1.5 * iqr)
+    return lb, ub
+lb, ub = out(num)
+print(lb)
+print(ub)  # range for the non-outliers
+sns.displot(num)
+sns.distplot(num)
+new_num = num[(lb < num) & (num < ub)]  # return numbers within the range
+print(new_num)
+lb1, lb2 = out(new_num)
+print(lb1)
+print(lb2)
+sns.displot(new_num)
+sns.distplot(new_num)
+final_num = new_num[(lb < num) & (num < ub)]  # verification
+print(final_num)
+sns.displot(final_num)
+sns.distplot(final_num)
+print(final_num)
