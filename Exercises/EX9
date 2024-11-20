@@ -1,0 +1,21 @@
+EX 9 T TEST
+REG NO:230701239
+STUDENT NAME:PRATHEBA.D
+
+import numpy as np
+from scipy import stats
+
+student_scores = np.array([72, 89, 65, 73, 79, 84, 63, 76, 85, 75])
+
+mu = 70
+
+t_stat, p_value = stats.ttest_1samp(student_scores, mu)
+print("T statistic:", t_stat)
+print("P-value:", p_value)
+
+alpha = 0.05
+
+if p_value < alpha:
+    print("Reject the null hypothesis; there is a significant difference between the sample mean and the hypothesized population mean.")
+else:
+    print("Fail to reject the null hypothesis; there is no significant difference between the sample mean and the hypothesized population mean.")
