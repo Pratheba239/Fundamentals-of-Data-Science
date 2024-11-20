@@ -1,0 +1,47 @@
+EX 6 FEATURE EXTRACTION
+REG NO:230701239
+STUDENT NAME:PRATHEBA.D
+
+import string
+import nltk
+import numpy as np
+import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from sklearn.naive_bayes import MultinomialNB
+nltk.download('stopwords')
+
+def textPreprocessing(data):
+    if not isinstance(data, str):
+        return ""
+    remove_pun = [c for c in data if c not in string.punctuation]
+    sentences = ''.join(remove_pun)
+    words = sentences.split()
+    return ' '.join(words)
+
+file_path = r"spam.csv" 
+df = pd.read_csv(file_path, sep='\t', names=['label', 'message'], encoding='latin1')
+df['message'] = df['message'].astype(str)
+
+wordVector = CountVectorizer(analyzer=textPreprocessing)
+finalWordVector = wordVector.fit(df['message'])
+print(finalWordVector.vocabulary_)
+
+bow = finalWordVector.transform(df['message'])
+print(bow)
+
+tfidfObject = TfidfTransformer().fit(bow)
+final_feature = tfidfObject.transform(bow)
+
+model = MultinomialNB()
+model.fit(final_feature, df['label'])
+
+score = model.score(final_feature, df['label'])
+print("Model Accuracy: ", score)
+
+inputSMS = input("Enter the SMS Content: ")
+preprocessText = textPreprocessing(inputSMS)
+vector = finalWordVector.transform([preprocessText])
+finalFeature = tfidfObject.transform(vector)
+
+pred = model.predict(finalFeature)[0]
+print("Given SMS is", pred)
