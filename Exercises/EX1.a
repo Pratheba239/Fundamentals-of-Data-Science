@@ -1,0 +1,41 @@
+EX 1.a BASIC PRACTICE EXPERIMENTS
+REG NO:230701239
+STUDENT NAME:PRATHEBA.D
+
+import pandas as pd
+import matplotlib.pyplot as plt
+data = { 'year':list(range(2011,2021)),'job posting':[150,160,170,180,190,100,102,104,106,107]}
+df = pd.DataFrame(data)
+df
+plt.plot(df['year'],df['job posting'],marker='o',color='m',ms=5)
+plt.title("trend of datascience job posting")
+plt.xlabel('year')
+plt.ylabel('number of job posting')
+plt.show()
+plt.bar(df['year'],df['job posting'])
+plt.title("trend of datascience job posting")
+plt.xlabel('year')
+plt.ylabel('number of job posting')
+plt.show()
+file=r"D:\230701239\Book1.csv"
+h=pd.read_csv(file)
+h.head()
+h.tail()
+h
+plt.plot(h['year'],h['job posting'],marker='*',color='r',ms=5)
+plt.title("trend of datascience job posting")
+plt.xlabel('year')
+plt.ylabel('number of job posting')
+plt.show()
+plt.bar(h['year'],h['job posting'],color='y')
+plt.title("trend of datascience job posting",color='g',size=20)
+plt.xlabel('year')
+plt.ylabel('number of job posting')
+plt.show()
+roles=["data scientist","data analyst","ml engineer"]
+count=[5,6,7]
+plt.bar(roles,count)
+plt.title("roles in datascience",color='r',size=20)
+plt.xlabel('roles')
+plt.ylabel('counts')
+plt.show()
