@@ -1,0 +1,14 @@
+EX 3 HANDLE MISSING VALUES
+REG NO:230701239
+STUDENT NAME:PRATHEBA.D
+
+import numpy as np
+import pandas as pd
+
+df = pd.read_csv("Hotel_Dataset.csv")
+df
+df.duplicated()
+df.drop_duplicates(inplace=True)
+
+df
+df["NoOfPox"].loc[df["NoOfPox"] > 0] = np.nan
