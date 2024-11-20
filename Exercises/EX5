@@ -1,0 +1,51 @@
+EX 5 EXPLORATORY DATA ANALYSIS
+REG NO:230701239
+STUDENT NAME:PRATHEBA.D
+
+import seaborn as sns
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+tips = sns.load_dataset('tips')
+
+tips.head()
+tips.head()
+
+sns.displot(tips.total_bill, kde=True)
+sns.displot(tips.total_bill, kde=False)
+sns.displot(tips.total_bill)
+sns.displot(tips.tip, kde=True)
+sns.displot(tips.sex, kde=True)
+sns.displot(tips.smoker, kde=True)
+sns.displot(tips.day, kde=True)
+sns.displot(tips.time, kde=True)
+sns.displot(tips['size'], kde=True)
+
+sns.jointplot(x=tips.tip, y=tips.total_bill)
+sns.jointplot(x=tips.tip, y=tips.total_bill, kind='reg')
+sns.jointplot(x=tips.tip, y=tips.sex)
+sns.jointplot(x=tips.tip, y=tips.sex, kind='reg')
+sns.jointplot(x=tips.tip, y=tips['size'], kind='reg')
+sns.jointplot(x=tips.tip, y=tips.total_bill, kind='hex')
+
+sns.pairplot(tips)
+tips.time.value_counts()
+tips.sex.value_counts()
+tips.total_bill.value_counts()
+tips.tip.value_counts()
+
+sns.pairplot(tips, hue='time')
+sns.pairplot(tips, hue='total_bill')
+sns.pairplot(tips, hue='tip')
+sns.pairplot(tips, hue='size')
+sns.pairplot(tips, hue='day')
+
+sns.heatmap(tips.corr(numeric_only=True), annot=True)
+sns.heatmap(tips.corr(numeric_only=True), annot=False)
+sns.heatmap(tips.corr(), annot=False)
+
+sns.boxplot(tips.total_bill)
+sns.boxplot(tips.sex)
+sns.countplot(tips.size)
