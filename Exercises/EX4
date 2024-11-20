@@ -1,0 +1,47 @@
+EX 4 DATAPREPROCESSING
+REG NO:230701239
+STUDENT NAME:PRATHEBA.D
+
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+file_path = r'D:\230701239\230701239\230701239\Students_data.csv'
+df = pd.read_csv(file_path)
+df
+df.head()
+df.head(8)
+df.tail()
+df.tail(8)
+df['Age']
+df['City']
+df.isnull().sum()
+df.dropna(subset=['Rank', 'Centums'], inplace=True)
+df
+df['Rank'].fillna(2, inplace=True)
+df
+a = df.dropna()
+print(a.to_string())
+df.dropna(inplace=True)
+df['Maths'].mean()
+df['Science'].mean()
+df['Maths'].median()
+df['Science'].median()
+df['Maths'].mode()
+df['Science'].mode()
+df['Average'].fillna(df['Maths'].mean(), inplace=True)
+df
+df['Average'].fillna(df['Science'].mean(), inplace=True)
+df
+df.dtypes
+df['Age'] = df['Age'].astype(int)
+df['Rank'] = df['Rank'].astype(int)
+df['Maths'] = df['Maths'].astype(float)
+df['Science'] = df['Science'].astype(float)
+df
+df.dtypes
+df.describe()
+plt.hist(df['Maths'], bins=7, color='blue', edgecolor='black')
+plt.title('Distribution of Maths Scores')
+plt.xlabel('Maths Scores
