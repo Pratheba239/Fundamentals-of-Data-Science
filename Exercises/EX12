@@ -1,8 +1,6 @@
 EX 12 LOGISTIC REGRESSION
-REG NO:230701027
-STUDENT NAME:AMIRTHAVARSHINI R U
-DATE:05/11/2024
-
+REG NO:230701239
+STUDENT NAME:PRATHEBA.D
 import numpy as np
 import pandas as pd
 df = pd.read_csv('Social_Network_Ads.csv.csv')
