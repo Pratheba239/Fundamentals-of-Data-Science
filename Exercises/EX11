@@ -1,0 +1,53 @@
+EX 11 LINEAR REGRESSION
+REG NO:230701239
+STUDENT NAME:PRATHEBA D
+
+# Supervised learning - regression
+
+import numpy as np
+import pandas as pd
+
+# Load dataset
+df = pd.read_csv('Salary_data.csv')
+
+# Check dataset information and handle missing values
+df.info()
+df.dropna(inplace=True)
+df.info()
+
+# Dataset statistics
+df.describe()
+
+# Feature (input) and label (output) selection
+features = df.iloc[:, [0]].values  # first column (years of experience)
+label = df.iloc[:, [1]].values  # second column (salary)
+
+# Train-test split
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(features, label, test_size=0.2, random_state=23)
+
+# Create and train the linear regression model
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(x_train, y_train)
+
+# Accuracy on training and testing datasets
+print(f"Training Accuracy: {model.score(x_train, y_train)}")
+print(f"Testing Accuracy: {model.score(x_test, y_test)}")
+
+# Model coefficients (slope and intercept)
+print(f"Slope: {model.coef_}")
+print(f"Intercept: {model.intercept_}")
+
+# Save the model using pickle
+import pickle
+pickle.dump(model, open('SalaryPred.model', 'wb'))
+
+# Load the model
+model = pickle.load(open('SalaryPred.model', 'rb'))
+
+# Predict salary for a given number of years of experience
+yr_of_exp = float(input("Enter Years Of Experience: "))
+yr_of_exp_NP = np.array([[yr_of_exp]])
+Salary = model.predict(yr_of_exp_NP)
+print(f"Estimated Salary for {yr_of_exp} years of experience is {Salary[0]}")
